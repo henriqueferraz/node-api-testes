@@ -5,7 +5,6 @@ describe('Testando o UserService', () => {
 
     let email = 'teste@oi.com.br';
     let password = '1234567';
-    let password_2 = '1111111';
 
     beforeAll(async () => {
         await User.sync({ force: true })

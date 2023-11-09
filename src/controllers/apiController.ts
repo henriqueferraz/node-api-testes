@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import * as useService from '../service/UserService';
 
 export const ping = (req: Request, res: Response) => {
-    res.json({ pong: true });
+    return res.json({ pong: true });
 }
 
 export const register = async (req: Request, res: Response) => {
@@ -18,9 +18,8 @@ export const register = async (req: Request, res: Response) => {
             res.status(201);
             return res.json({ id: newUser.id });
         };
-        return;
     };
-    res.json({ error: 'email e/ou senha não enviados' });
+    return res.json({ error: 'email e/ou senha não enviados' });
 };
 
 
@@ -36,12 +35,11 @@ export const login = async (req: Request, res: Response) => {
 
             const match = await useService.matchPassword(password, user.password)
             if (match) {
-                res.json({ status: true });
-                return;
+                return res.json({ status: true });
             };
         };
     };
-    res.json({ status: false });
+    return res.json({ status: false });
 };
 
 export const list = async (req: Request, res: Response) => {
@@ -52,5 +50,5 @@ export const list = async (req: Request, res: Response) => {
         list.push(users[i].email);
     }
 
-    res.json({ list });
+    return res.json({ list });
 }
